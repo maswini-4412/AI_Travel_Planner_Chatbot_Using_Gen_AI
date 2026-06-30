@@ -9,7 +9,7 @@ load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
 
 if not api_key:
-    raise ValueError("❌ GROQ_API_KEY not found in .env file")
+    raise ValueError(" GROQ_API_KEY not found in .env file")
 
 # ==============================
 # LLM
@@ -31,7 +31,7 @@ def is_travel_query(user_input):
     return any(word in user_input.lower() for word in keywords)
 
 # ==============================
-# Agents (STRICT BEHAVIOR)
+# Agents 
 # ==============================
 route_agent = Agent(
     role="Travel Route Finder",
@@ -61,7 +61,7 @@ def run_travel_planner(user_input: str) -> str:
     try:
         # Guardrail 1: Input validation
         if not is_travel_query(user_input):
-            return "❌ I can only help with travel planning queries (trips, routes, itinerary, budget)."
+            return " I can only help with travel planning queries (trips, routes, itinerary, budget)."
 
         #  Guardrail 2: Strict instructions
         route_task = Task(
@@ -114,6 +114,6 @@ def run_travel_planner(user_input: str) -> str:
         return f"✈️ Travel Plan:\n\n{result}"
 
     except Exception as e:
-        return f"❌ Error: {str(e)}" 
+        return f" Error: {str(e)}" 
 
         
